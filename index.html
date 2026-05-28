@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NyPack - Sensibilidade e Otimização para Free Fire</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(255, 176, 0, 0.18), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(255, 120, 0, 0.14), transparent 35%),
+        linear-gradient(135deg, #050505 0%, #0b0b0b 55%, #000 100%);
+    }
+
+    .hero {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 18px 70px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .logo {
+      width: 170px;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 0 18px rgba(255, 187, 0, .35));
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 187, 0, .12);
+      color: #ffc400;
+      border: 1px solid rgba(255, 187, 0, .35);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: .95;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: #ffb400;
+      text-shadow: 0 0 22px rgba(255, 180, 0, .4);
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #d9d9d9;
+      max-width: 590px;
+    }
+
+    .price-box {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 900;
+      color: #ffb400;
+    }
+
+    .price small {
+      font-size: 16px;
+      color: #cfcfcf;
+      display: block;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffcc00, #ff8c00);
+      color: #111;
+      text-decoration: none;
+      padding: 18px 28px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 18px;
+      box-shadow: 0 0 30px rgba(255, 174, 0, .35);
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 44px rgba(255, 174, 0, .55);
+    }
+
+    .hero-card {
+      border: 1px solid rgba(255, 180, 0, .28);
+      background: rgba(10, 10, 10, .74);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0, 0, 0, .45);
+    }
+
+    .hero-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .trust {
+      max-width: 1180px;
+      margin: -28px auto 0;
+      padding: 0 18px 54px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .trust-card, .about-card, .final-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255, 180, 0, .22);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .trust-card h3 {
+      color: #ffb400;
+      font-size: 21px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .trust-card p {
+      color: #d6d6d6;
+      line-height: 1.45;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 18px 54px;
+    }
+
+    .about-card {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .about-card h2, .final-card h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .about-card h2 span, .final-card h2 span {
+      color: #ffb400;
+    }
+
+    .about-card p, .final-card p {
+      color: #dfdfdf;
+      line-height: 1.7;
+      font-size: 18px;
+    }
+
+    .benefits {
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefit {
+      padding: 16px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255, 180, 0, .18);
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .benefit span {
+      color: #ffb400;
+    }
+
+    .final-card {
+      text-align: center;
+      padding: 36px 24px;
+    }
+
+    .final-card img {
+      width: 180px;
+      max-width: 70%;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 0 22px rgba(255, 180, 0, .35));
+    }
+
+    .footer {
+      text-align: center;
+      color: #888;
+      padding: 26px 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 24px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .trust {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <img src="assets/logo-nypack.png" alt="Logo NyPack" class="logo" />
+        <div class="badge">🛡️ Compra segura • Acesso rápido</div>
+
+        <h1>Domine o <span>Free Fire</span> com a NyPack</h1>
+
+        <p class="subtitle">
+          A NyPack foi criada para ajudar jogadores que buscam mais sensibilidade,
+          otimização e estabilidade de mira, com configurações simples e diretas para melhorar sua gameplay.
+        </p>
+
+        <div class="price-box">
+          <div class="price">
+            <small>Por apenas</small>
+            R$5,00
+          </div>
+
+          <a class="btn" href="https://lastlink.com/p/C48C1F38F/checkout-payment">
+            Comprar agora
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="assets/produto-nypack.png" alt="Produto NyPack" />
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="trust-card">
+        <h3>🎯 Sensibilidade</h3>
+        <p>Ajustes pensados para deixar a mira mais confortável e precisa durante as partidas.</p>
+      </div>
+
+      <div class="trust-card">
+        <h3>⚡ Otimização</h3>
+        <p>Configurações para melhorar fluidez, reduzir travamentos e deixar a gameplay mais leve.</p>
+      </div>
+
+      <div class="trust-card">
+        <h3>🛡️ Confiança</h3>
+        <p>Produto simples, direto e desenvolvido com foco em ajudar jogadores reais.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="about-card">
+        <div>
+          <h2>Vantagens da <span>NyPack</span></h2>
+          <p>
+            A NyPack reúne configurações e métodos voltados para quem quer jogar com mais controle,
+            estabilidade e desempenho. Tudo organizado para facilitar sua evolução no Free Fire.
+          </p>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit">✅ <span>Mais precisão</span> na mira</div>
+          <div class="benefit">✅ <span>Configurações completas</span> e fáceis de aplicar</div>
+          <div class="benefit">✅ <span>Compatível com Android e iOS</span></div>
+          <div class="benefit">✅ <span>Conteúdo atualizado</span> para melhor desempenho</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="final-card">
+        <img src="assets/logo-nypack.png" alt="Logo NyPack" />
+        <h2>Sobre a <span>NyPack</span></h2>
+        <p>
+          NyPack foi desenvolvida por uma única pessoa, com intuito de ajudar outros jogadores!
+          Obrigado a todos pela confiança e preferência.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 NyPack - Desempenho • Segurança • Vantagem
+    </div>
+  </main>
+</body>
+</html>
